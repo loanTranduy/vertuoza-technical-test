@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+enum EntityType {
+  CONTACT
+  COMPANY
+}
+
+model Entity {
+  id           String     @id @default(cuid())
+  name         String
+  email        String? // Optional, used for Contact
+  phone        String? // Optional, used for Contact
+  industry     String? // Optional, used for Company
+  contactEmail String? // Optional, used for Company
+  entityType   EntityType @default(CONTACT) // Discriminator to identify if it's a Contact or Company
+}
