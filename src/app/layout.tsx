@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import ApolloClientProvider from '@/app/lib/graphql/ApolloClientProvider';
+import { Toaster } from '@/components/ui/toaster';
+import { ReactNode } from 'react';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -22,14 +24,17 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ApolloClientProvider>{children}</ApolloClientProvider>
+        <ApolloClientProvider>
+          <main>{children}</main>
+          <Toaster />
+        </ApolloClientProvider>
       </body>
     </html>
   );

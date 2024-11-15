@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@apollo/client';
 import { CREATE_ENTITY } from '@/app/lib/graphql/mutation';
 import { GET_ENTITIES } from '@/app/lib/graphql/queries';
+import { toast } from '@/hooks/use-toast';
 
 const useCreateEntity = () => {
   const [createEntity] = useMutation(CREATE_ENTITY);
@@ -50,9 +51,16 @@ const useCreateEntity = () => {
         variables: { input },
         refetchQueries: [{ query: GET_ENTITIES }],
       });
+      toast({
+        variant: 'success',
+        title: `${data.name} added successfully`,
+      });
       form.reset();
     } catch (error) {
-      console.error('Error creating entity:', error);
+      toast({
+        variant: 'destructive',
+        title: `${error}`,
+      });
     }
   };
 
