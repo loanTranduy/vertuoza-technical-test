@@ -1,4 +1,4 @@
-import EntityList from '@/app/components/EntityList';
+import EntityList from '@/components/EntityList';
 import CreateEntity from '@/components/CreateEntity/CreateEntity';
 
 export default function Home() {
