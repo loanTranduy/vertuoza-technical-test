@@ -3,7 +3,7 @@ import CreateEntityForm from '@/components/CreateEntity/CreateEntityForm';
 
 const CreateEntity = () => {
   return (
-    <div className="grid gap-4">
+    <div className="min-w-64">
       <CreateEntityForm />
     </div>
   );

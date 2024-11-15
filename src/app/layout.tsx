@@ -1,19 +1,14 @@
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
 import ApolloClientProvider from '@/app/lib/graphql/ApolloClientProvider';
 import { Toaster } from '@/components/ui/toaster';
 import { ReactNode } from 'react';
+import { Montserrat } from 'next/font/google';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-montserrat',
 });
 
 export const metadata: Metadata = {
@@ -28,11 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${montserrat.variable} font-sans`}>
         <ApolloClientProvider>
-          <main>{children}</main>
+          <div className="container mx-auto p-4 mt-9">
+            <main>{children}</main>
+          </div>
           <Toaster />
         </ApolloClientProvider>
       </body>

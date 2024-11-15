@@ -45,13 +45,15 @@ const CreateEntityForm = () => {
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="grid gap-4">
-            <InputRadioGroup
-              inputsradio={types}
-              title={'type'}
-              control={form.control}
-            />
-            {renderInputs()}
+          <div className="grid gap-12">
+            <div className="grid gap-4">
+              <InputRadioGroup
+                inputsradio={types}
+                title={'type'}
+                control={form.control}
+              />
+              {renderInputs()}
+            </div>
             <Button type="submit" ariaLabel={`Add new ${selectedType}`}>
               Add new {selectedType}
             </Button>
