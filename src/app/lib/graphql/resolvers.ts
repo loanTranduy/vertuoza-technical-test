@@ -26,7 +26,15 @@ export const resolvers = {
     },
   },
   Mutation: {
-    createEntity: () => {},
+    createEntity: async (
+      _parent: any,
+      args: { input: any },
+      context: Context
+    ) => {
+      return context.prisma.entity.create({
+        data: args.input,
+      });
+    },
     updateEntity: () => {},
   },
 };

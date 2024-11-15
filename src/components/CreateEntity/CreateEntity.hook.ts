@@ -1,0 +1,66 @@
+import { useForm } from 'react-hook-form';
+import {
+  createFormSchema,
+  EntityType,
+  TFormSchema,
+} from '@/components/CreateEntity/CreateEntity.types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@apollo/client';
+import { CREATE_ENTITY } from '@/app/lib/graphql/mutation';
+import { GET_ENTITIES } from '@/app/lib/graphql/queries';
+
+const useCreateEntity = () => {
+  const [createEntity] = useMutation(CREATE_ENTITY);
+  const form = useForm<TFormSchema>({
+    resolver: zodResolver(createFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      industry: '',
+      contactEmail: '',
+      type: EntityType.CONTACT,
+    },
+  });
+  const selectedType = form.watch('type');
+
+  const onSubmit = async (data: TFormSchema) => {
+    const filteredDataType = () => {
+      if (data.type === EntityType.CONTACT) {
+        return {
+          email: data.email,
+          phone: data.phone,
+        };
+      } else if (data.type === EntityType.COMPANY) {
+        return {
+          industry: data.industry,
+          contactEmail: data.contactEmail,
+        };
+      }
+    };
+
+    const input = {
+      entityType: data.type.toUpperCase(),
+      name: data.name,
+      ...filteredDataType(),
+    };
+
+    try {
+      await createEntity({
+        variables: { input },
+        refetchQueries: [{ query: GET_ENTITIES }],
+      });
+      form.reset();
+    } catch (error) {
+      console.error('Error creating entity:', error);
+    }
+  };
+
+  return {
+    form,
+    selectedType,
+    onSubmit,
+  };
+};
+
+export default useCreateEntity;
