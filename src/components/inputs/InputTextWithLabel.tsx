@@ -14,6 +14,7 @@ type TInputTextWithLabel<T extends FieldValues> = {
   control: Control<T>;
   name: Path<T>;
   label: string;
+  required?: boolean;
 };
 
 const InputTextWithLabel = <T extends FieldValues>({
@@ -21,6 +22,7 @@ const InputTextWithLabel = <T extends FieldValues>({
   name,
   placeholder,
   control,
+  required,
 }: TInputTextWithLabel<T>) => {
   return (
     <FormField
@@ -29,7 +31,10 @@ const InputTextWithLabel = <T extends FieldValues>({
       render={({ field }) => {
         return (
           <FormItem>
-            <FormLabel htmlFor={name}>{label}</FormLabel>
+            <FormLabel className="capitalize" htmlFor={name}>
+              {label}
+              {required && <span> *</span>}
+            </FormLabel>
             <FormControl>
               <Input
                 {...field}

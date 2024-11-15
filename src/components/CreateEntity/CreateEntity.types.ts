@@ -24,4 +24,5 @@ export type TTextInputs = {
   type?: 'Contact' | 'Company';
   name: keyof TFormSchema;
   label: string;
+  required?: boolean;
 };
