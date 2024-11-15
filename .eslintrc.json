@@ -23,7 +23,7 @@
       }
     ],
     "no-console": [
-      "error"
+      "warn"
     ],
     "semi": [
       "error",
