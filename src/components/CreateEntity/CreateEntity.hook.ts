@@ -3,6 +3,7 @@ import {
   createFormSchema,
   EntityType,
   TFormSchema,
+  TonSuccess,
 } from '@/components/CreateEntity/CreateEntity.types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@apollo/client';
@@ -25,7 +26,7 @@ const useCreateEntity = () => {
   });
   const selectedType = form.watch('type');
 
-  const onSubmit = async (data: TFormSchema) => {
+  const onSubmitInputs = async (data: TFormSchema) => {
     const filteredDataType = () => {
       if (data.type === EntityType.CONTACT) {
         return {
@@ -62,6 +63,13 @@ const useCreateEntity = () => {
         title: `${error}`,
       });
     }
+  };
+
+  const onSubmit = (onSuccess: TonSuccess['onSuccess']) => {
+    return form.handleSubmit((data: TFormSchema) => {
+      onSubmitInputs(data);
+      onSuccess();
+    });
   };
 
   return {

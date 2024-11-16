@@ -1,11 +1,24 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import CreateEntityForm from '@/components/CreateEntity/CreateEntityForm';
+import Modal from '@/components/Modal/Modal';
 
 const CreateEntity = () => {
+  const [open, setOpen] = useState(false);
+  const oncloseDialog = () => {
+    setOpen(false);
+  };
   return (
-    <div className="min-w-64">
-      <CreateEntityForm />
-    </div>
+    <Modal
+      open={open}
+      onOpenChange={setOpen}
+      actionAriaLabel="Add Entity"
+      actionLabel="Add Entity"
+      description="Insert information below"
+      title="Add Entity"
+    >
+      <CreateEntityForm onSuccess={oncloseDialog} />
+    </Modal>
   );
 };
 

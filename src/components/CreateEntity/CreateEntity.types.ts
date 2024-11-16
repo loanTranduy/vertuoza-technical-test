@@ -5,6 +5,8 @@ export enum EntityType {
   COMPANY = 'Company',
 }
 
+export const types = [EntityType.CONTACT, EntityType.COMPANY];
+
 export type TTextInputs = {
   type?: 'Contact' | 'Company';
   name: keyof TFormSchema;
@@ -40,3 +42,7 @@ export const createFormSchema = z
   });
 
 export type TFormSchema = z.infer<typeof createFormSchema>;
+
+export type TonSuccess = {
+  onSuccess: () => void;
+};
