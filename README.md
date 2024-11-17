@@ -1,4 +1,15 @@
+# Front-End Developer Technical Test - Vertuoza
+
+This project showcases the implementation of this [technical test](https://maple-flavor-8f4.notion.site/Exercice-front-end-14f5f2d3d8f04c4aa36fae11a2252cc6) for the Front-End Developer position at Vertuoza.
+
+_________
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts).
+
+## Live Demo
+You can view the deployed version here:
+[vertuoza-technical-test.vercel.app](https://vertuoza-technical-test.vercel.app/)
 
 ## Getting Started
 
@@ -16,21 +27,34 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development Timeline 
+I spent just over 3 days to complete this project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ #### Day 1
+- Project setup 
+- Vercel database creation
+- GraphQL and Prisma setup 
+- Deployment on vercel
 
-## Learn More
+#### Day 2
+- Creation of the "CreateEntity" feature
+- Implementation of the Table with AGGrid
 
-To learn more about Next.js, take a look at the following resources:
+#### Day 3.5
+- Creation of various reusable components
+- Creation of the "UpdateEntity" feature
+- Polished UI
+- Debug
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future Enhancements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+With more time, I would implement the following improvements:
 
-## Deploy on Vercel
+- Implement token-based variables (colors, spacing, etc.) for easier and faster UI customization
+- Make the table mobile-friendly
+- Debug type vs. typename schema issue to prevent duplication
+- Consolidate useCreateEntity and useUpdateEntity into a shared hook
+- Improve the design of InputRadioGroup
+- Improve InputTextWithLabel error message design causing the modal height to change
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
