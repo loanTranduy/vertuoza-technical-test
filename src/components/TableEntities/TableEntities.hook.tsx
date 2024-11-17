@@ -1,6 +1,6 @@
 import React from 'react';
 import * as agGrid from 'ag-grid-community';
-import { GridReadyEvent, ICellRendererParams } from 'ag-grid-community';
+import { ICellRendererParams } from 'ag-grid-community';
 import { Building, User } from 'lucide-react';
 import UpdateEntity from '@/components/UpdateEntity/UpdateEntity';
 import { EntityType } from '@/components/EntityForm/EntityForm.types';
@@ -62,13 +62,8 @@ export const useTableEntities = () => {
     minWidth: 100,
   };
 
-  const onGridReady = (params: GridReadyEvent) => {
-    params.api.sizeColumnsToFit();
-  };
-
   return {
     columnDefs,
     defaultColDef,
-    onGridReady,
   };
 };
