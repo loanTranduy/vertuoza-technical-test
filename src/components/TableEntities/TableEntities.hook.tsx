@@ -19,10 +19,10 @@ export const useTableEntities = () => {
     return (
       <div className="flex justify-end">
         <div
-          className={`inline-flex items-center justify-center rounded-md h-10 w-10 border-2 ${isContact ? 'border-blue-500' : 'border-teal-500'}`}
+          className={`inline-flex items-center justify-center rounded-md h-10 w-10 border-2 ${isContact ? 'border-blue-600' : 'border-teal-500'}`}
         >
           {isContact ? (
-            <User className="h-4 w-4 text-blue-500" />
+            <User className="h-4 w-4 text-blue-600" />
           ) : (
             <Building className="h-4 w-4 text-teal-500" />
           )}

@@ -16,7 +16,7 @@
   }
 
   .ag-root-wrapper-body.ag-layout-normal {
-    width: calc(100% + 2px);
+    width: calc(100% + var(--border-width-sm));
   }
 
   .ag-cell.ag-cell-not-inline-editing.ag-cell-normal-height.ag-column-first.ag-cell-value,
@@ -41,7 +41,7 @@
     border: none;
     &:hover {
       &:before {
-        background-color: var(--secondary);
+        background-color: hsl(var(--border));
       }
     }
   }
