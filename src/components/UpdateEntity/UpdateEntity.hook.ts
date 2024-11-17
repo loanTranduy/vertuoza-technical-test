@@ -34,13 +34,13 @@ const useUpdateEntity = ({ entity }: TEntity) => {
     const filteredDataType = () => {
       if (data.__typename === EntityType.CONTACT) {
         return {
-          email: data.email,
-          phone: data.phone,
+          email: data.email || '',
+          phone: data.phone || '',
         };
       } else if (data.__typename === EntityType.COMPANY) {
         return {
-          industry: data.industry,
-          contactEmail: data.contactEmail,
+          industry: data.industry || '',
+          contactEmail: data.contactEmail || '',
         };
       }
     };
