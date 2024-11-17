@@ -6,7 +6,7 @@ const MobileWarning = () => {
     <div className="sm:hidden flex items-center justify-center mt-20">
       <div className="text-center">
         <div className="flex justify-center mb-8">
-          <Smartphone className="w-16 h-16 text-primary" />
+          <Smartphone className="w-16 h-16 text-blue-600" />
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Sorry</h1>
         <p className="text-xl text-gray-600 mb-6">

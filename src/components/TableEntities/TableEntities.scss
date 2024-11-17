@@ -1,3 +1,4 @@
+
 .grid-container {
   height: 600px;
   margin: 0 auto;
@@ -5,6 +6,7 @@
 }
 
 .ag-grid {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
   .ag-header,
   .ag-advanced-filter-header {
     background-color: transparent;
@@ -16,7 +18,7 @@
   }
 
   .ag-root-wrapper-body.ag-layout-normal {
-    width: calc(100% + 2px);
+    width: calc(100% + var(--border-width-sm));
   }
 
   .ag-cell.ag-cell-not-inline-editing.ag-cell-normal-height.ag-column-first.ag-cell-value,
@@ -30,7 +32,7 @@
     font-weight: var(--font-weight-medium);
   }
   .ag-header-cell-text {
-    color: hsl(var(--secondary-foreground));
+    color: hsl(var(--neutral-400));
   }
 
   .ag-cell {
@@ -41,7 +43,7 @@
     border: none;
     &:hover {
       &:before {
-        background-color: var(--secondary);
+        background-color: hsl(var(--border));
       }
     }
   }
