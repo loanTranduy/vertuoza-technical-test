@@ -1,10 +1,10 @@
-'use client';
 import React, { useState } from 'react';
-import CreateEntityForm from '@/components/CreateEntity/CreateEntityForm';
 import Modal from '@/components/Modal/Modal';
+import CreateEntityForm from '@/components/CreateEntity/CreateEntityForm';
 import { Button } from '@/components/ui/button';
+import { Pencil } from 'lucide-react';
 
-const CreateEntity = () => {
+const UpdateEntity = () => {
   const [open, setOpen] = useState(false);
   const oncloseDialog = () => {
     setOpen(false);
@@ -12,13 +12,18 @@ const CreateEntity = () => {
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <Modal.Trigger>
-        <Button ariaLabel="Add entity">Add Entity</Button>
+        <Button variant="outline" size="icon" ariaLabel={'update entity'}>
+          <Pencil />
+        </Button>
       </Modal.Trigger>
-      <Modal.Content description="Insert information below" title="Add Entity">
+      <Modal.Content
+        title="Modify entity information"
+        description="This changes cannot be undone"
+      >
         <CreateEntityForm onSuccess={oncloseDialog} />
       </Modal.Content>
     </Modal>
   );
 };
 
-export default CreateEntity;
+export default UpdateEntity;
