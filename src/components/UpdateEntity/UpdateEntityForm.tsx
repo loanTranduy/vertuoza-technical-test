@@ -1,28 +1,27 @@
 import React from 'react';
 import EntityForm from '@/components/EntityForm/EntityForm';
-import useCreateEntity from '@/components/CreateEntity/CreateEntity.hook';
+import useUpdateEntity from '@/components/UpdateEntity/UpdateEntity.hook';
 import {
   SubmitType,
+  TEntity,
   TonSuccess,
 } from '@/components/EntityForm/EntityForm.types';
 
-const CreateEntityForm = ({ onSuccess }: TonSuccess) => {
-  const { form, selectedType, onCreate } = useCreateEntity();
+const UpdateEntityForm = ({ onSuccess, entity }: TonSuccess & TEntity) => {
+  const { form, onUpdate, selectedType } = useUpdateEntity({ entity: entity });
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onCreate(onSuccess)();
+    onUpdate(onSuccess)();
   };
-
   return (
     <EntityForm
       form={form}
       handleOnSubmit={handleOnSubmit}
-      withTypes
-      onSubmitType={SubmitType.CREATE}
+      onSubmitType={SubmitType.UPDATE}
       selectedType={selectedType}
     />
   );
 };
 
-export default CreateEntityForm;
+export default UpdateEntityForm;

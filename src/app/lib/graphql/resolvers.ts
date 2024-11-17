@@ -35,6 +35,13 @@ export const resolvers = {
         data: args.input,
       });
     },
-    updateEntity: () => {},
+    updateEntity: async (_parent: any, args: any, context: Context) => {
+      return context.prisma.entity.update({
+        where: {
+          id: args.input.id,
+        },
+        data: args.input, // Only the fields in input will be updated
+      });
+    },
   },
 };

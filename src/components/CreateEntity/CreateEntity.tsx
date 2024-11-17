@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import CreateEntityForm from '@/components/CreateEntity/CreateEntityForm';
 import Modal from '@/components/Modal/Modal';
 import { Button } from '@/components/ui/button';
+import CreateEntityForm from '@/components/CreateEntity/CreateEntityForm';
 
 const CreateEntity = () => {
   const [open, setOpen] = useState(false);

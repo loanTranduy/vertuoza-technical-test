@@ -19,3 +19,24 @@ export const CREATE_ENTITY = gql`
     }
   }
 `;
+
+export const UPDATE_ENTITY = gql`
+  mutation updateEntity($input: UpdateEntityInput) {
+    updateEntity(input: $input) {
+      id
+      name
+      ... on Contact {
+        id
+        name
+        email
+        phone
+      }
+      ... on Company {
+        id
+        name
+        industry
+        contactEmail
+      }
+    }
+  }
+`;

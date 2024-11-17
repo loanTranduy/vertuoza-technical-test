@@ -1,20 +1,22 @@
 import { useForm } from 'react-hook-form';
 import {
-  createFormSchema,
-  EntityType,
+  formSchema,
   TFormSchema,
-  TonSuccess,
 } from '@/components/CreateEntity/CreateEntity.types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@apollo/client';
 import { CREATE_ENTITY } from '@/app/lib/graphql/mutation';
 import { GET_ENTITIES } from '@/app/lib/graphql/queries';
 import { toast } from '@/hooks/use-toast';
+import {
+  EntityType,
+  TonSuccess,
+} from '@/components/EntityForm/EntityForm.types';
 
 const useCreateEntity = () => {
   const [createEntity] = useMutation(CREATE_ENTITY);
   const form = useForm<TFormSchema>({
-    resolver: zodResolver(createFormSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -42,7 +44,7 @@ const useCreateEntity = () => {
     };
 
     const input = {
-      entityType: data.type.toUpperCase(),
+      entityType: data.type && data.type.toUpperCase(),
       name: data.name,
       ...filteredDataType(),
     };
@@ -65,9 +67,9 @@ const useCreateEntity = () => {
     }
   };
 
-  const onSubmit = (onSuccess: TonSuccess['onSuccess']) => {
-    return form.handleSubmit((data: TFormSchema) => {
-      onSubmitInputs(data);
+  const onCreate = (onSuccess: TonSuccess['onSuccess']) => {
+    return form.handleSubmit(async (data: TFormSchema) => {
+      await onSubmitInputs(data);
       onSuccess();
     });
   };
@@ -75,7 +77,7 @@ const useCreateEntity = () => {
   return {
     form,
     selectedType,
-    onSubmit,
+    onCreate,
   };
 };
 
