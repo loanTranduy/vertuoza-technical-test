@@ -24,13 +24,22 @@ export const formSchema = z
     __typename: asOptionalField(typeSchema),
   })
   .refine(
-    (data) => (data.type === EntityType.COMPANY ? !!data.industry : true),
+    (data) => {
+      const entityType = data.type || data.__typename;
+      return entityType === EntityType.COMPANY ? !!data.industry : true;
+    },
     {
       message: nameMessage,
       path: ['industry'],
     }
   )
-  .refine((data) => (data.type === EntityType.CONTACT ? !!data.email : true), {
-    message: emailMessage,
-    path: ['email'],
-  });
+  .refine(
+    (data) => {
+      const entityType = data.type || data.__typename;
+      return entityType === EntityType.CONTACT ? !!data.email : true;
+    },
+    {
+      message: emailMessage,
+      path: ['email'],
+    }
+  );
