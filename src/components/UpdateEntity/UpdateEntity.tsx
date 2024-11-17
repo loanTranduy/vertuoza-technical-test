@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Modal from '@/components/Modal/Modal';
-import CreateEntityForm from '@/components/CreateEntity/CreateEntityForm';
 import { Button } from '@/components/ui/button';
 import { Pencil } from 'lucide-react';
+import UpdateEntityForm from '@/components/UpdateEntity/UpdateEntityForm';
+import { TEntity } from '@/components/EntityForm/EntityForm.types';
 
-const UpdateEntity = () => {
+const UpdateEntity = ({ entity }: TEntity) => {
   const [open, setOpen] = useState(false);
   const oncloseDialog = () => {
     setOpen(false);
@@ -20,7 +21,7 @@ const UpdateEntity = () => {
         title="Modify entity information"
         description="This changes cannot be undone"
       >
-        <CreateEntityForm onSuccess={oncloseDialog} />
+        <UpdateEntityForm onSuccess={oncloseDialog} entity={entity} />
       </Modal.Content>
     </Modal>
   );

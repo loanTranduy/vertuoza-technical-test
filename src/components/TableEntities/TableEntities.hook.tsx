@@ -2,12 +2,12 @@ import React from 'react';
 import * as agGrid from 'ag-grid-community';
 import { GridReadyEvent, ICellRendererParams } from 'ag-grid-community';
 import { Building, User } from 'lucide-react';
-import { EntityType } from '@/components/CreateEntity/CreateEntity.types';
 import UpdateEntity from '@/components/UpdateEntity/UpdateEntity';
+import { EntityType } from '@/components/EntityForm/EntityForm.types';
 
 export const useTableEntities = () => {
-  const ActionUpdateEntity = () => {
-    return <UpdateEntity />;
+  const ActionUpdateEntity = (params: ICellRendererParams) => {
+    return <UpdateEntity entity={params.data} />;
   };
 
   const EmailFiltered = ({ data }: ICellRendererParams) => {

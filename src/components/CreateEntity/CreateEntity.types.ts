@@ -1,18 +1,5 @@
 import { z } from 'zod';
-
-export enum EntityType {
-  CONTACT = 'Contact',
-  COMPANY = 'Company',
-}
-
-export const types = [EntityType.CONTACT, EntityType.COMPANY];
-
-export type TTextInputs = {
-  type?: 'Contact' | 'Company';
-  name: keyof TFormSchema;
-  label: string;
-  required?: boolean;
-};
+import { EntityType } from '@/components/EntityForm/EntityForm.types';
 
 const emptyStringToUndefined = z.literal('').transform(() => undefined);
 
@@ -20,29 +7,30 @@ export function asOptionalField<T extends z.ZodTypeAny>(schema: T) {
   return schema.optional().or(emptyStringToUndefined);
 }
 
-export const createFormSchema = z
+export type TFormSchema = z.infer<typeof formSchema>;
+
+export const typeSchema = z.enum([EntityType.CONTACT, EntityType.COMPANY]);
+const nameMessage = 'Min 2 characters';
+const emailMessage = 'Invalid email format';
+export const formSchema = z
   .object({
-    type: z.enum([EntityType.CONTACT, EntityType.COMPANY]),
-    name: z.string().min(2, 'Min 2 characters'),
+    id: asOptionalField(z.string()),
+    type: asOptionalField(typeSchema),
+    name: z.string().min(2, nameMessage),
     email: asOptionalField(z.string().email()),
     phone: asOptionalField(z.string().min(10, 'Min 10 characters')),
-    contactEmail: asOptionalField(z.string().email('Invalid email format')),
+    contactEmail: asOptionalField(z.string().email(emailMessage)),
     industry: asOptionalField(z.string().min(2)),
+    __typename: asOptionalField(typeSchema),
   })
   .refine(
     (data) => (data.type === EntityType.COMPANY ? !!data.industry : true),
     {
-      message: 'Min 2 characters',
+      message: nameMessage,
       path: ['industry'],
     }
   )
   .refine((data) => (data.type === EntityType.CONTACT ? !!data.email : true), {
-    message: 'Invalid email format',
+    message: emailMessage,
     path: ['email'],
   });
-
-export type TFormSchema = z.infer<typeof createFormSchema>;
-
-export type TonSuccess = {
-  onSuccess: () => void;
-};
