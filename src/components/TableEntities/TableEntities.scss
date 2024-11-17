@@ -1,3 +1,4 @@
+
 .grid-container {
   height: 600px;
   margin: 0 auto;
@@ -5,6 +6,7 @@
 }
 
 .ag-grid {
+  font-family: var(--font-montserrat), system-ui, sans-serif;
   .ag-header,
   .ag-advanced-filter-header {
     background-color: transparent;
@@ -30,7 +32,7 @@
     font-weight: var(--font-weight-medium);
   }
   .ag-header-cell-text {
-    color: hsl(var(--secondary-foreground));
+    color: hsl(var(--neutral-400));
   }
 
   .ag-cell {
